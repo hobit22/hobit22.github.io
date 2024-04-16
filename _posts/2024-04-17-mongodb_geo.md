@@ -12,7 +12,7 @@ toc: true
 MongoDB는 다양한 형태의 데이터를 저장하고 검색할 수 있는 유연성을 제공하며, 지리공간 데이터의 처리도 예외는 아닙니다. MongoDB에서 지리공간 데이터를 다루기 위해, 첫 번째 단계는 적절한 인덱스를 생성하는 것입니다. 지리공간 인덱스를 사용하면, 효율적으로 위치 기반 데이터를 쿼리할 수 있습니다.
 
 ### 인덱스 
-[MongoDB GEospatial Indexes](https://www.mongodb.com/docs/manual/core/indexes/index-types/index-geospatial/)   
+[MongoDB Geospatial Indexes](https://www.mongodb.com/docs/manual/core/indexes/index-types/index-geospatial/)   
 
 MongoDB에서 제공하는 지리공간 인덱스 유형은 2dsphere와 2d가 있습니다. 
 #### 2dsphere 
@@ -75,5 +75,21 @@ $geoWithin과 $geoIntersects 연산자를 사용하여 Polygon 내부 또는 교
 
 [S2 공식문서](http://s2geometry.io/)
 
-Google S2 라이브러리는 지구를 셀로 나누어 공간 데이터를 효율적으로 색인하고 검색할 수 있는 기능을 제공합니다. 이 라이브러리는 지리공간 검색에서 고유한 접근 방식을 사용하여, 지구 표면을 구형 트리로 나타내며, 이는 S2 셀이라고 불리는 작은 영역으로 분할됩니다.
 ![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/985655e8-9082-4f37-9d53-c3bfbd7242e9)
+
+
+Google S2 라이브러리는 지구를 셀로 나누어 공간 데이터를 효율적으로 색인하고 검색할 수 있는 기능을 제공합니다. 이 라이브러리는 지리공간 검색에서 고유한 접근 방식을 사용하여, 지구 표면을 구형 트리로 나타내며, 이는 S2 셀이라고 불리는 작은 영역으로 분할됩니다. 
+
+| Google s2 를 한 마디로 말하자면 동그란 지구 표면 위에 힐버트 커브를 그려놓은 것
+
+![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/d7a87b81-d1f0-481f-9709-14e331cbc504)
+
+
+S2 인덱스 생성 전 Query Performance Summary 
+![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/92c4f18a-e4e9-4a35-9fea-c66d2c646c71)
+
+S2 인덱스 생성 후 Query Performance Summary
+![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/73b48f91-d96e-4123-a7b3-66d7da0b6290)
+
+* excecution time : **421ms -> 3ms**
+* examined documents : **80000 -> 465**
