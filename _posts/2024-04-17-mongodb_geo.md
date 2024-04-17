@@ -73,7 +73,7 @@ $geoWithin과 $geoIntersects 연산자를 사용하여 Polygon 내부 또는 교
 
 ### Google S2
 
-[S2 공식문서](http://s2geometry.io/)
+[S2 공식문서](https://s2geometry.io/)
 
 ![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/985655e8-9082-4f37-9d53-c3bfbd7242e9)
 
