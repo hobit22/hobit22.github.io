@@ -99,7 +99,7 @@ public Book findBook(ISBN isbn) {...}
 
 ```java
 @Cacheable(
-        cacheManager = "cachingRedisCacheManager",
+        cacheManager = "redisCacheManager",
         value = RedisCacheKey.Book,
         key = "'query:' + #query + ':authorId:' + #authorId + ':paramsHash:' + T(java.util.Objects).hash(#pageable.pageNumber, #pageable.pageSize, #pageable.sort)",
         condition = "@redisCacheUtils.isRedisAvailable()"
@@ -107,6 +107,11 @@ public Book findBook(ISBN isbn) {...}
 )
 public Page<BookDto> getBookPage(String query, Long authorId, Pageable pageable) {...}
 ```
+
+`condition` 조건을 통해 redis가 살아 있을때에만 캐싱하도록 설정
+
+`unless` 조건을 통해 결과가 null이 아닌 경우에만 캐싱하도록 설정
+
 
 ### @CachePut
 캐시에 값을 저장하는 용도로 사용한다. 이 어노테이션을 사용하면 메소드가 호출될 때마다 메소드의 결과를 캐시에 강제로 추가하거나 업데이트 한다. 이는 메소드의 실행을 방해하지 않으면서, 캐시에 저장된 데이터를 최신 상태로 유지하고자 할 때 유용하다.
@@ -153,3 +158,11 @@ public void deleteUser(String userId) {
 3. 자원 제약조건
 
     사용 가능한 캐시 메모리가 제한적일 경우, 너무 많은 데이터를 캐시에 보관하면 메모리 부족 문제가 발생할 수 있다.
+
+
+### 캐시 적용 후
+
+![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/8b0416d6-52a6-4456-afed-447f3af1ce0c)
+![image (1)](https://github.com/hobit22/hobit22.github.io/assets/40729223/a230ddcb-6ecf-4bb1-a626-98de9f725293)
+
+개발서버에서 테스트 한 결과, 1.12s -> 37.95ms 약 29배 속도 향상되었다.
