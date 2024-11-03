@@ -195,5 +195,5 @@ jekyll-archives:
     category: /categories/:name/
 
 plugins:
-  - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-sitemap
