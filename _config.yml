@@ -19,7 +19,7 @@ title: Hobit22 # the main title
 tagline: BackEnd Developer # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  Spring BackEnd Developer
+  Spring Backend Developer
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -43,6 +43,7 @@ social:
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
+    # - https://stackoverflow.com/users/username
 
 google_site_verification: 3piQm-m4-VC18gjzaJt5FvsG1Ojg5I-6II-ygAzMXeM # fill in to your verification string
 
@@ -50,7 +51,7 @@ google_site_verification: 3piQm-m4-VC18gjzaJt5FvsG1Ojg5I-6II-ygAzMXeM # fill in 
 # The end of `jekyll-seo-tag` settings
 
 google_analytics:
-  id: # fill in your Google Analytics ID
+  id: G-F9MJ9LMLL6
 
 # Prefer color scheme setting.
 #
@@ -197,3 +198,6 @@ jekyll-archives:
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-redirect-from
+  - jekyll-paginate
+  - jekyll-include-cache
