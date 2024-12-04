@@ -200,4 +200,5 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jekyll-paginate
+  - jekyll-feed
   - jekyll-include-cache
