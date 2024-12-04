@@ -109,7 +109,7 @@ assets:
     env: # [development|production]
 
 pwa:
-  enabled: true # the option for PWA feature
+  enabled: false # the option for PWA feature
 
 paginate: 10
 
@@ -194,11 +194,3 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
-
-plugins:
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-redirect-from
-  - jekyll-paginate
-  - jekyll-feed
-  - jekyll-include-cache
