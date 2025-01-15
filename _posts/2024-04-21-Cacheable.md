@@ -1,9 +1,8 @@
 ---
 title: WIL Spring Cacheable
 layout: post
-tags: [WIL, Spring]
+tag: [WIL, Spring]
 toc: true
-author: hobin
 ---
 
 사내 서비스가 커지면서 트래픽이 점점 늘어나고 있다. 덕분에 일이 많아졌지만, 쉽게 경험할 수 없는 이슈라고 생각하며 즐겁게 일하고 있다. 많은 부분을 개선할 수 있겠지만, 내가 맡은 부분은 RDS의 CPU 사용률이다. 학교를 대상으로 하는 서비스다보니 주중 오전 8시부터 오후 4시까지는 DB에 꽤나 높게 부하가 걸린다. 이번주 WIL은 이러한 부하를 줄이기 위한 여러가지 시도들을 기록해본다.

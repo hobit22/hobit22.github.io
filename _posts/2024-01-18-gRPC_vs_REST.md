@@ -2,7 +2,6 @@
 title: gRPC vs REST
 layout: post
 tag: [gRPC]
-author: hobin
 toc: true
 ---
 

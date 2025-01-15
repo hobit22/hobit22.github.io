@@ -1,9 +1,8 @@
 ---
 title: MongoDB와 지리검색 
 layout: post
-tags: [mongodb]
+tag: [mongodb]
 toc: true
-author: hobin
 ---
 
 [배달앱은 어떻게 내 주변의 맛집을 찾을까?](https://inf.run/3BEWe) 파트1에 대한 개인적인 정리 글 입니다.
