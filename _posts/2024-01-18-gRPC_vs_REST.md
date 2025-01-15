@@ -1,9 +1,9 @@
 ---
 title: gRPC vs REST
 layout: post
-tag: [gRPC]
-author: hobin
+tags: [gRPC]
 toc: true
+author: hobin
 ---
 
 ### gRPC vs REST: 주요 차이점
