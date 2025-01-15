@@ -194,3 +194,10 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+plugins:
+  - jekyll-seo-tag
+
+url: "https://hobit22.github.io" # the base hostname & protocol for your site
+plugins:
+  - jekyll-sitemap
