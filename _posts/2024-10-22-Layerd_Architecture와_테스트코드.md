@@ -1,8 +1,9 @@
 ---
 title: Layerd Architecture와 테스트코드
 layout: post
-tag: [강의, Test]
+tags: [강의, Test]
 toc: true
+author: hobin
 ---
 
 [인프런 워밍업 클럽 스터디 2기 - 백엔드 클린 코드, 테스트코드(Java, Spring Boot)](https://inf.run/zgJk5) 과정 중 [Practical Testing: 실용적인 테스트 가이드](https://inf.run/YLRXA)를 듣고 요약한 내용입니다.

@@ -1,8 +1,9 @@
 ---
 title: WIL 동시성 병렬성
 layout: post
-tag: [WIL]
+tags: [WIL]
 toc: true
+author: hobin
 ---
 
 2024 2분기가 시작됐다.  평소에 공부한 것을 기록하는 습관을 만들기 위해 2분기부터 WIL를 적어보려 한다. 현재 회사에서 Python으로 서버를 구현하는 것이 있어, 강의를 몇개 듣고 있다.  4월 1주차 WIL는 [파이썬 동시성 프로그래밍: 데이터 수집부터 웹 개발까지(feat. FastAPI)](https://www.inflearn.com/course/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%8F%99%EC%8B%9C%EC%84%B1-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/dashboard) 의 일부를 보고 공부한 것을 정리하고자 한다.

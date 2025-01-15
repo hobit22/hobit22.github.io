@@ -1,8 +1,9 @@
 ---
 title: jooq vs querydsl
 layout: post
-tag: [java, orm, querydsl, jooq]
+tags: [java, orm, querydsl, jooq]
 toc: true
+author: hobin
 ---
 
 ## jOOQ vs QueryDSL

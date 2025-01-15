@@ -1,8 +1,9 @@
 ---
 title: Spring Quartz
 layout: post
-tag: [WIL, Quartz, Schedule]
+tags: [WIL, Quartz, Schedule]
 toc: true
+author: hobin
 ---
 
 
