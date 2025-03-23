@@ -7,5 +7,5 @@ User-agent: *
 
 Disallow: /norobots/
 
-Sitemap: {{ '/sitemap-test.xml' | absolute_url }}
+Sitemap: {{ '/sitemap-custom.xml' | absolute_url }}
 Sitemap: {{ '/sitemap.xml' | absolute_url }}
