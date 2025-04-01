@@ -7,20 +7,21 @@ toc: true
 
 자바를 잘 다루기 위해 [이펙티브 자바](https://product.kyobobook.co.kr/detail/S000001033066)를 읽고 정리한 내용입니다. :)
 
+## 2장. 객체 생성과 파괴
 
-## 아이템 1. 생성자 대신 정적 팩토리 메서드를 사용하라
-###  정적 팩토리 메서드의 장점
+### 1. 생성자 대신 정적 팩토리 메서드를 사용하라
+####  정적 팩토리 메서드의 장점
 1. 이름을 가질 수 있다.
 2. 호출될 때마다 인스턴스를 새로 생성하지 않아도 된다.
 3. 반환 타입의 하위 타입 객체를 반환할 수 있는 능력이 있다.
 4. 입력 매개변수에 따라 매번 다른 클래스의 객체를 반환할 수 있다.
 5. 정적 팩토리 메서드를 작성하는 시점에는 반환할 객체의 클래스가 존재하지 않아도 된다.      
 
-### 정적 팩토리 메서드의 단점
+#### 정적 팩토리 메서드의 단점
 1. 상속을 하려면 public이나 protected 생성자가 필요하니 정적 패토리 메서드만 제공하면 하위 클래스를 만들 수 없다.
 2. 정적 팩토리 메서드는 프로그래머가 찾기 어렵다.
 
-### 네이밍 예시
+#### 네이밍 예시
 - from : 매개변수를 하나 받아서 해당 타입의 인스턴스를 반환하는 형변환 메서드        
     ```java
     Date d = Date.from(instance);
@@ -62,8 +63,8 @@ toc: true
     ```
 
 
-## 아이템 2. 생성자에 매개변수가 많다면 빌더를 고려하라
-### 점층적 생성자 패턴
+### 2. 생성자에 매개변수가 많다면 빌더를 고려하라
+#### 점층적 생성자 패턴
 - 매개변수가 많아질수록 생성자 오버로딩이 많아져서 유지보수하기 어려움.
 - 매개변수의 순서를 기억해야 함
 
@@ -100,7 +101,7 @@ public class Pizza {
 Pizza pizza = new Pizza("Thin Crust", "Tomato", "Cheddar", "Pepperoni");
 ```
 
-### 자바빈즈 패턴
+#### 자바빈즈 패턴
 - 객체를 완전히 만들기 전에 불완전한 상태로 존재할 수 있음.(`setDough()`만 호출하고 `setSauce()`를 안 할 수도 있음)
 - 객체가 불변(immutable)하지 않음 → 멀티스레드 환경에서 동기화 문제가 발생할 수 있음.
 
@@ -128,7 +129,7 @@ pizza.setCheese("Cheddar");
 pizza.setTopping("Pepperoni");
 ```
 
-### 빌더 패턴
+#### 빌더 패턴
 - 메서드 체이닝 방식으로 가독성이 좋음.
 - 객체가 완전히 생성된 후 변경할 수 없음 (불변성 보장).
 - 기본값을 설정할 수 있음.
@@ -189,8 +190,8 @@ Pizza pizza = new Pizza.Builder("Thin Crust")
         .build();
 ```
         
-## 아이템 3. private 생성자나 열거 타입으로 싱글턴임을 보증하라
-### 싱글턴을 구현하는 방법
+### 3. private 생성자나 열거 타입으로 싱글턴임을 보증하라
+#### 싱글턴을 구현하는 방법
 1. private 생성자 + static final 필드
     - `INSTANCE`는 클래스가 로드될 때 단 한 번 생성됨.
     - **싱글턴이 보장됨** (항상 같은 인스턴스를 사용).
@@ -261,10 +262,10 @@ Pizza pizza = new Pizza.Builder("Thin Crust")
 - **Enum을 사용한 싱글턴** (`enum Singleton { INSTANCE; }`)
 - 상속이 필요하면 **private 생성자 + 정적 팩토리 메서드 + 리플렉션 방지 코드** 추가
 
-## 아이템 4. 인스턴스화를 막으려거든 private 생성자를 사용하라    
+### 4. 인스턴스화를 막으려거든 private 생성자를 사용하라    
 인스턴스화가 필요 없는 유틸리티 클래스의 경우에 보통 사용
 
-### 인스턴스화가 가능할 때
+#### 인스턴스화가 가능할 때
 - `MathUtils`는 **정적 메서드만 제공하는데, 인스턴스를 만들 수 있음** → 불필요한 객체가 생성될 수 있음.
 - 의도하지 않은 **잘못된 사용 가능성 증가**.
 
@@ -278,7 +279,7 @@ public class MathUtils {
 MathUtils utils = new MathUtils(); // ❌ 불필요한 객체 생성 가능
 ```
     
-### private 생성자로 인스턴스화 방지    
+#### private 생성자로 인스턴스화 방지    
 ```java
 public class MathUtils {
     // ✅ private 생성자로 인스턴스화 방지
@@ -294,8 +295,8 @@ public class MathUtils {
 MathUtils utils = new MathUtils(); // ❌ 컴파일 에러 또는 AssertionError 발생!
 ```
         
-## 아이템 5. 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라
-### 직접 자원을 명시하는 경우
+### 5. 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라
+#### 직접 자원을 명시하는 경우
 - `SpellChecker` 클래스가 **Dictionary 구현체에 강하게 결합되어 있음 (하드코딩)**
 - 나중에 다른 `Dictionary`를 사용하려면 **코드를 직접 수정해야 함**
 - **테스트가 어렵다** → `Dictionary`의 동작을 변경하려면 `SpellChecker` 내부를 수정해야 함.
@@ -310,7 +311,7 @@ public class SpellChecker {
 }    
 ```
     
-### 의존 객체 주입
+#### 의존 객체 주입
 - **다양한 `Dictionary` 구현체를 쉽게 주입할 수 있음**
 - `Dictionary` 구현을 바꾸려면 **생성자에서 다른 객체를 넣어주기만 하면 됨**
 - **테스트가 쉬워짐** → 가짜(Fake) `Dictionary`를 주입해서 단위 테스트 가능!
@@ -335,7 +336,7 @@ Dictionary englishDictionary = new EnglishDictionary();
 SpellChecker spellChecker = new SpellChecker(englishDictionary); // 주입
 ```
 
-### 인터페이스를 활용하면 확장성이 좋아진다.
+#### 인터페이스를 활용하면 확장성이 좋아진다.
 
 ```java
 // 사전(Dictionary) 인터페이스
@@ -357,19 +358,19 @@ public class FrenchDictionary implements Dictionary {
     }
 }    
 ```    
-### 주입 방법
+#### 주입 방법
 1. 생성자 주입(추천)
 2. setter 주입
 3. 메서드 주입
     
-## 아이템 6. 불필요한 객체 생성을 피하라
+### 6. 불필요한 객체 생성을 피하라
 1. 같은 값을 가진 객체를 계속 생성하지 말고, 기존 객체를 재사용할 방법을 고려하라!
 2. 객체 생성 비용이 큰 경우, 정적 팩토리 메서드(`valueOf()`, `Pattern.compile()`)를 활용하라.
 3. 불변 객체(String, Boolean, Integer 등)는 캐싱을 활용하여 재사용하라.
 4. 불변 리스트나 컬렉션을 매번 새로 만들 필요 없이 `Collections.unmodifiableList()` 등을 활용하라.
 
     
-## 아이템 7. 다 쓴 객체 참조를 해제하라
+### 7. 다 쓴 객체 참조를 해제하라
 1. GC가 자동으로 메모리를 관리하지만, 개발자가 직접 객체 참조를 해제해야 할 때가 있다!
 2. 컬렉션(List, Map, Set 등)에 객체를 추가하면 필요할 때 꼭 제거하자.
 3. pop() 등의 메서드에서 다 쓴 객체는 `null`로 초기화하자.
@@ -377,7 +378,7 @@ public class FrenchDictionary implements Dictionary {
 5. 이벤트 리스너와 콜백도 필요할 때 해제해야 한다.
 
 
-## 아이템 8. finalizer와 cleaner 사용을 피하라
+### 8. finalizer와 cleaner 사용을 피하라
 1. `finalize()`는 절대 사용하지 말자! (`Cleaner`도 마찬가지)
 2. 자원을 해제해야 한다면 `AutoCloseable`을 구현하고 `try-with-resources`를 사용하자.
 3. 명시적으로 `close()`를 호출하는 것이 `finalize()`보다 훨씬 안전하다.
