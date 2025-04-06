@@ -233,6 +233,7 @@ class MyList<E> {
 
 - `type` 필드를 통해 동작을 분기하는 태그 달린 클래스보다, **클래스 계층 구조 + 다형성**을 활용하는 것이 더 깔끔하고 유지보수에 좋다.
 - 태그 달린 클래스를 써야 하는 상황은 거의 없다. 계층구조를 사용하자.
+
 ```java
 // BAD
 class Figure {
@@ -295,6 +296,7 @@ class Circle extends Figure {
 
     @Override double area() { return Math.PI * (radius * radius); }
 }
+
 ```
 
 ---
