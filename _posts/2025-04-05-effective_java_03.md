@@ -139,7 +139,8 @@ data class Config(
 - 상속 : 하위 클래스가 상위 클래스의 특성을 재정의 한것 > (IS-A) 관계
 - 컴포지션 : 기존 클래스가 새로운 클래스의 구성요소가 되는것 > (HAS-A) 관계
 - 상속은 내부 구현에 강하게 결합되므로 깨지기 쉽다.
-- **재사용이나 확장**이 목적이라면, 기존 클래스를 필드로 갖고 위임(delegate)하는 **컴포지션**을 우선 고려하자.
+- **재사용이나 확장**이 목적이라면, 기존 클래스를 필드로 갖고 위임(delegate)하는 **컴포지션**을 우선 고려하자.  
+
 ```java
 // BAD
 public class MyList<E> extends ArrayList<E> {
@@ -172,6 +173,7 @@ public class MyList<E> {
     }
 }
 ```
+
 ```kotlin
 // BAD
 class MyList<E> : ArrayList<E>() {
@@ -196,6 +198,7 @@ class MyList<E> {
     fun getAll(): List<E> = list
 }
 ```
+
 > 컴포지션은 외부 구현 변경에 영향을 덜 받는다. 위임을 통해 필요한 기능만 제한적으로 노출할 수 있다.
 
 
