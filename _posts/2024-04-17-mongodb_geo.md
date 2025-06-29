@@ -36,7 +36,7 @@ MongoDB는 Point와 Polygon을 포함한 여러 지리공간 데이터 형식을
 
 #### Point
 Point는 위도와 경도를 하나로 묶은 자료구조입니다. MongoDB에서는 geo json 양식을 사용합니다. 
-![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/eb7145ef-e76c-47d2-a01e-15f528c3fb2f)
+![image](assets/img/posts/geo-point.png)
 ```json
 {
   "type": "Point",
@@ -49,7 +49,7 @@ Point 데이터를 활용한 검색은 위치 기반 서비스에서 매우 흔�
 
 #### Polygon
 `point` 점들이 모인 선 `linestring`이고,  `linestring` 선들이 모인 면이 `polygon` 입니다.
-![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/473ed59f-3348-4e19-a22d-d19c8815c8e2)
+![image](assets/img/posts/geo-polygon.png)
 ```json
 {
   "type": "Polygon",
@@ -75,21 +75,21 @@ $geoWithin과 $geoIntersects 연산자를 사용하여 Polygon 내부 또는 교
 
 [S2 공식문서](https://s2geometry.io/)
 
-![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/985655e8-9082-4f37-9d53-c3bfbd7242e9)
+![image](assets/img/posts/google-s2.png)
 
 
 Google S2 라이브러리는 지구를 셀로 나누어 공간 데이터를 효율적으로 색인하고 검색할 수 있는 기능을 제공합니다. 이 라이브러리는 지리공간 검색에서 고유한 접근 방식을 사용하여, 지구 표면을 구형 트리로 나타내며, 이는 S2 셀이라고 불리는 작은 영역으로 분할됩니다. 
 
 | Google s2 를 한 마디로 말하자면 동그란 지구 표면 위에 힐버트 커브를 그려놓은 것
 
-![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/d7a87b81-d1f0-481f-9709-14e331cbc504)
+![image](assets/img/posts/geo-graph.png)
 
 
 S2 인덱스 생성 전 Query Performance Summary 
-![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/92c4f18a-e4e9-4a35-9fea-c66d2c646c71)
+![image](assets/img/posts/index-before.png)
 
 S2 인덱스 생성 후 Query Performance Summary
-![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/73b48f91-d96e-4123-a7b3-66d7da0b6290)
+![image](assets/img/posts/index-after.png)
 
 * excecution time : **421ms -> 3ms**
 * examined documents : **80000 -> 465**

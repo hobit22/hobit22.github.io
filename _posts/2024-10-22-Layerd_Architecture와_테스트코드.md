@@ -11,7 +11,7 @@ toc: true
 ## Layerd Architecture란?
 Presentation Layer, Business Layer, Persistence Layer로 나뉜 계층형 아키텍쳐를 말한다. 
 
-![image](https://github.com/user-attachments/assets/56e408e8-4640-4d69-8b9e-a599b4947ba2)
+![image](assets/img/posts/layerd-architecture.png)
 
 ### 왜 사용할까?
 - 유지보수의 용이성     

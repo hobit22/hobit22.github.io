@@ -162,7 +162,7 @@ public void deleteUser(String userId) {
 
 ### 캐시 적용 후
 
-![image](https://github.com/hobit22/hobit22.github.io/assets/40729223/8b0416d6-52a6-4456-afed-447f3af1ce0c)
-![image (1)](https://github.com/hobit22/hobit22.github.io/assets/40729223/a230ddcb-6ecf-4bb1-a626-98de9f725293)
+![image](assets/img/posts/cache-before.png)
+![image (1)](assets/img/posts/cache-after.png)
 
 개발서버에서 테스트 한 결과, 1.12s -> 37.95ms 약 29배 속도 향상되었다.
