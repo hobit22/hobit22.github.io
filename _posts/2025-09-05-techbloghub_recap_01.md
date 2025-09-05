@@ -31,7 +31,7 @@ tags: [recap]
 
 - **Frontend**: Next.js 15, TypeScript, React-Query, TailwindCSS
 - **Backend**: Spring Boot 3.2 (헥사고날 아키텍처), Java 21, PostgreSQL, JPA, QueryDSL
-- **크롤링 / 태깅**: FastAPI + BeautifulSoup4 (추후 AWS Lambda 이전 예정)
+- **크롤링 / 태깅**: FastAPI, SQLArchemy, openai, BeautifulSoup4 (추후 AWS Lambda 이전 예정)
 
 👉 사실 기술 스택은 “최적”보다는 **익숙함과 개발 속도**를 우선으로 정했습니다.  
 Next.js는 SEO와 CSR/SSR 하이브리드가 마음에 들었고, Spring은 제가 제일 잘 다루는 프레임워크라 빠르게 시작할 수 있었습니다.
