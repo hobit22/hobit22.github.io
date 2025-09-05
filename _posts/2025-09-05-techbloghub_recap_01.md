@@ -13,6 +13,8 @@ tags: [recap]
 이미 [TechBlogPosts](https://www.techblogposts.com/ko), [NewCodes](https://newcodes.net/) 같은 서비스가 있긴 합니다. 하지만 대부분 단순 나열에 가까웠고, 저는 **분류와 관련 글 추천**까지 제공하는 걸 목표로 삼았습니다.  
 백엔드 개발자로서 부족한 부분은 AI 도구들의 도움을 받기도 했습니다.
 
+[Github TechBlogHub Repository](https://github.com/hobit22/techbloghub)
+
 ---
 
 ## 프로젝트 개요
