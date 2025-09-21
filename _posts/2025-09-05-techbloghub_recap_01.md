@@ -2,7 +2,7 @@
 layout: post
 title: TechBlogHub 개발일지 01
 date: 2025-09-05
-tag: [recap]
+tags: [recap]
 ---
 
 ## 도입
