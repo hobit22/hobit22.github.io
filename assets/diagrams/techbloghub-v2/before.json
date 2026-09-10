@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "TechBlogHub v1 아키텍처",
+    "output": "techbloghub-v1.architecture.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/hobit22/techbloghub",
+      "revision": "546ec4f09ea7a10012dd75e414436275c3f989ab"
+    },
+    "viewBox": [1380, 760],
+    "views": [
+      {
+        "id": "read-path",
+        "label": "사용자 조회 경로",
+        "focus": ["reader", "next-frontend", "fastapi-api", "postgres"],
+        "note": "브라우저 요청마다 Next.js가 FastAPI와 PostgreSQL의 동적 응답에 의존합니다."
+      },
+      {
+        "id": "collection-path",
+        "label": "수집·추출 경로",
+        "focus": ["scheduled-worker", "rss-proxy", "source-blogs", "postgres"],
+        "note": "FastAPI 프로세스 안의 APScheduler가 RSS 수집과 본문 추출을 시간대별로 실행합니다."
+      },
+      {
+        "id": "summary-path",
+        "label": "AI 요약 경로",
+        "focus": ["reader", "next-frontend", "fastapi-api", "openai"],
+        "note": "상세 화면의 요약은 FastAPI가 OpenAI 응답을 SSE로 스트리밍합니다."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "reader",
+      "type": "external",
+      "label": "독자",
+      "sublabel": "웹 브라우저",
+      "pos": [40, 310],
+      "size": [150, 72]
+    },
+    {
+      "id": "next-frontend",
+      "type": "frontend",
+      "label": "Next.js 프론트엔드",
+      "sublabel": "App Router · React Query",
+      "brand": "next-js",
+      "pos": [260, 310],
+      "size": [190, 72],
+      "sources": [
+        {"path": "frontend/src/lib/api/client.ts", "line": 7, "end_line": 20, "label": "FastAPI 클라이언트"},
+        {"path": "frontend/src/app/page.tsx", "line": 1, "end_line": 22, "label": "홈 페이지"}
+      ]
+    },
+    {
+      "id": "fastapi-api",
+      "type": "backend",
+      "label": "FastAPI API",
+      "sublabel": "Public/Admin REST · SSE",
+      "brand": "fastapi",
+      "pos": [530, 310],
+      "size": [190, 72],
+      "sources": [
+        {"path": "fastapi/main.py", "line": 19, "end_line": 47, "label": "API 라우터 구성"},
+        {"path": "fastapi/app/api/v1/public/posts.py", "line": 22, "end_line": 66, "label": "목록·검색 API"},
+        {"path": "fastapi/app/api/v1/public/summaries.py", "line": 18, "end_line": 87, "label": "요약 SSE"}
+      ]
+    },
+    {
+      "id": "postgres",
+      "type": "database",
+      "label": "PostgreSQL",
+      "sublabel": "블로그 · 포스트 · 본문 · 상태",
+      "brand": "postgresql",
+      "pos": [800, 310],
+      "size": [190, 72],
+      "sources": [
+        {"path": "fastapi/app/core/database.py", "line": 6, "end_line": 24, "label": "비동기 SQLAlchemy"},
+        {"path": "fastapi/app/models/post.py", "line": 1, "end_line": 80, "label": "포스트 모델"}
+      ]
+    },
+    {
+      "id": "scheduled-worker",
+      "type": "backend",
+      "label": "수집·추출 워커",
+      "sublabel": "APScheduler · Trafilatura · Playwright",
+      "pos": [530, 80],
+      "size": [220, 78],
+      "sources": [
+        {"path": "fastapi/app/scheduler.py", "line": 23, "end_line": 93, "label": "RSS·본문 작업"},
+        {"path": "fastapi/app/scheduler.py", "line": 168, "end_line": 198, "label": "매일 01·02·03시"},
+        {"path": "fastapi/app/services/workers/content_extractor.py", "line": 378, "end_line": 425, "label": "추출 fallback"}
+      ]
+    },
+    {
+      "id": "rss-proxy",
+      "type": "cloud",
+      "label": "Cloudflare RSS Proxy",
+      "sublabel": "Worker · GET 전달",
+      "brand": "cloudflare",
+      "pos": [830, 80],
+      "size": [200, 72],
+      "sources": [
+        {"path": "cloudflare/rss-proxy/src/index.mjs", "line": 1, "end_line": 60, "label": "RSS 프록시"},
+        {"path": "wrangler.jsonc", "line": 1, "end_line": 6, "label": "Worker 설정"}
+      ]
+    },
+    {
+      "id": "source-blogs",
+      "type": "external",
+      "label": "기업 기술 블로그",
+      "sublabel": "RSS 피드 · 원문 페이지",
+      "pos": [1110, 80],
+      "size": [190, 72],
+      "sources": [
+        {"path": "fastapi/app/services/workers/rss_collector.py", "line": 87, "end_line": 164, "label": "RSS 요청·파싱"}
+      ]
+    },
+    {
+      "id": "openai",
+      "type": "external",
+      "label": "OpenAI",
+      "sublabel": "GPT-4o-mini 스트리밍",
+      "brand": "openai",
+      "pos": [800, 560],
+      "size": [190, 72],
+      "sources": [
+        {"path": "fastapi/app/services/integrations/summary_generator.py", "line": 61, "end_line": 106, "label": "스트리밍 생성"}
+      ]
+    }
+  ],
+  "connections": [
+    {"id": "reader-to-next", "from": "reader", "to": "next-frontend", "label": "HTTPS", "variant": "emphasis"},
+    {"id": "next-to-api", "from": "next-frontend", "to": "fastapi-api", "label": "REST /api/v1", "variant": "emphasis"},
+    {"id": "api-to-postgres", "from": "fastapi-api", "to": "postgres", "label": "목록·검색 SQL", "variant": "emphasis"},
+    {"id": "api-to-openai", "from": "fastapi-api", "to": "openai", "label": "SSE 요약 요청", "variant": "dashed", "fromSide": "bottom", "toSide": "left"},
+    {"id": "worker-to-proxy", "from": "scheduled-worker", "to": "rss-proxy", "label": "RSS·원문 GET"},
+    {"id": "proxy-to-sources", "from": "rss-proxy", "to": "source-blogs", "label": "HTTP(S)"},
+    {"id": "worker-to-sources", "from": "scheduled-worker", "to": "source-blogs", "label": "직접 요청 fallback", "variant": "dashed", "fromSide": "top", "toSide": "top"},
+    {"id": "worker-to-postgres", "from": "scheduled-worker", "to": "postgres", "label": "메타·본문·처리 상태 저장", "fromSide": "bottom", "toSide": "top"}
+  ],
+  "cards": [
+    {"dot": "cyan", "title": "조회", "items": ["검색과 목록 조회가 FastAPI 및 PostgreSQL의 가용성에 연결됨", "상세 페이지에서 AI 요약을 요청 시점에 SSE로 생성"]},
+    {"dot": "orange", "title": "수집", "items": ["APScheduler가 같은 FastAPI 런타임에서 01·02·03시 작업 수행", "프록시·직접 HTTP·Playwright 순으로 외부 콘텐츠 접근"]},
+    {"dot": "violet", "title": "상태", "items": ["수집 메타데이터, 추출 본문, 재시도 상태를 PostgreSQL에 함께 보관"]}
+  ]
+}
